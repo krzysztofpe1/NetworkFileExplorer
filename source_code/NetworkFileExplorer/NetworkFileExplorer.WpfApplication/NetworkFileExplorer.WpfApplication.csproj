@@ -1,0 +1,52 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\file_generic_closed.png" />
+    <None Remove="Resources\file_generic_opened.png" />
+    <None Remove="Resources\file_js_closed.png" />
+    <None Remove="Resources\file_js_opened.png" />
+    <None Remove="Resources\flag_english.png" />
+    <None Remove="Resources\flag_polish.png" />
+    <None Remove="Resources\folder_closed.png" />
+    <None Remove="Resources\folder_opened.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MvvmLightLibs" Version="5.4.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Images\file_generic_closed.png" />
+    <Resource Include="Resources\Images\file_generic_opened.png" />
+    <Resource Include="Resources\Images\file_js_closed.png" />
+    <Resource Include="Resources\Images\file_js_opened.png" />
+    <Resource Include="Resources\Images\flag_english.png" />
+    <Resource Include="Resources\Images\flag_polish.png" />
+    <Resource Include="Resources\Images\folder_closed.png" />
+    <Resource Include="Resources\Images\folder_opened.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Resources\CultureStrings\Strings.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Strings.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\CultureStrings\Strings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>

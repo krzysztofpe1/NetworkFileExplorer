@@ -1,0 +1,84 @@
+﻿<Window x:Class="NetworkFileExplorer.WpfApplication.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NetworkFileExplorer.WpfApplication"
+        xmlns:viewModels="clr-namespace:NetworkFileExplorer.WpfApplication.ViewModels"
+        xmlns:utils="clr-namespace:NetworkFileExplorer.WpfApplication.Utils"
+        xmlns:cultureStrings="clr-namespace:NetworkFileExplorer.WpfApplication.Resources.CultureStrings"
+        mc:Ignorable="d"
+        Title="Network File Explorer" Height="450" Width="800">
+    <Window.Resources>
+        <!--Styles-->
+        <Style x:Key="LangButtonStyle" TargetType="ToggleButton">
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Style.Triggers>
+                <Trigger Property="IsChecked" Value="True">
+                    <Setter Property="BorderThickness" Value="1" />
+                    <Setter Property="BorderBrush" Value="Blue" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        
+        <!--Converters-->
+        <utils:LangToBoolConverter x:Key="LangToBoolConverter"/>
+        <utils:FileExtensionToIconConverter x:Key="FileExtensionToIconConverter"/>
+        
+        <!--Data Templates-->
+        <DataTemplate DataType="{x:Type viewModels:FileInfoViewModel}">
+            <StackPanel Orientation="Horizontal">
+                <Image Width="14" Source="{Binding Model.Name, Converter={StaticResource FileExtensionToIconConverter}}"/>
+                <TextBlock Text="{Binding Caption}" />
+            </StackPanel>
+        </DataTemplate>
+        <HierarchicalDataTemplate DataType="{x:Type viewModels:DirectoryInfoViewModel}" ItemsSource="{Binding Items}">
+            <StackPanel Orientation="Horizontal">
+                <Image Width="16" Source="/Resources/folder_closed.png"/>
+                <TextBlock Text="{Binding Caption}" FontWeight="Bold"/>
+            </StackPanel>
+        </HierarchicalDataTemplate>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <ToolBar Grid.ColumnSpan="2" Grid.Row="0">
+            <Menu>
+                <MenuItem Header="{Binding Source={StaticResource Strings}, Path=File}">
+                    <MenuItem x:Name="OpenDirectoryButton" Header="{Binding Source={StaticResource Strings}, Path=OpenDirectory}" Click="OpenDirectoryMI_Click"/>
+                    <MenuItem x:Name="CloseButton" Header="{Binding Source={StaticResource Strings}, Path=Close}" Click="Close_Click"/>
+                </MenuItem>
+            </Menu>
+
+            <ToggleButton x:Name="polishLangButton" Style="{StaticResource LangButtonStyle}" IsChecked="{Binding Lang, Converter={StaticResource LangToBoolConverter}, ConverterParameter=pl}">
+                <Image Source="/Resources/Images/flag_polish.png" Width="16"/>
+            </ToggleButton>
+            <ToggleButton x:Name="englishLangButton" Style="{StaticResource LangButtonStyle}" IsChecked="{Binding Lang, Converter={StaticResource LangToBoolConverter}, ConverterParameter=en}">
+                <Image Source="/Resources/Images/flag_english.png" Width="16"/>
+            </ToggleButton>
+        </ToolBar>
+        <Grid Grid.Column="0" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="40"/>
+            </Grid.RowDefinitions>
+            <TreeView Grid.Row="0" x:Name="DiskTreeView" ItemsSource="{Binding Root.Items}" d:ItemsSource="{d:SampleData ItemCount=5}"/>
+            <StatusBar Grid.Row="1" x:Name="statusBar">
+                <TextBlock x:Name="statusTextBlock" TextWrapping="Wrap" Width="79" Text="----"/>
+            </StatusBar>
+        </Grid>
+
+
+        <ScrollViewer x:Name="scrollViewer" HorizontalAlignment="Left" Height="367" Margin="422,48,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="360">
+            <TextBlock TextWrapping="Wrap"/>
+        </ScrollViewer>
+
+    </Grid>
+</Window>
