@@ -106,4 +106,49 @@
   <data name="Close" xml:space="preserve">
     <value>Close</value>
   </data>
+  <data name="SelectDirectoryToOpen" xml:space="preserve">
+    <value>Select directory to open</value>
+  </data>
+  <data name="SortDialogTitle" xml:space="preserve">
+    <value>Sort options</value>
+  </data>
+  <data name="SortByName" xml:space="preserve">
+    <value>name</value>
+  </data>
+  <data name="SortBy" xml:space="preserve">
+    <value>Sort by:</value>
+  </data>
+  <data name="SortBySize" xml:space="preserve">
+    <value>size</value>
+  </data>
+  <data name="SortByExtension" xml:space="preserve">
+    <value>extension</value>
+  </data>
+  <data name="SortByLastModifiedDate" xml:space="preserve">
+    <value>last modified date</value>
+  </data>
+  <data name="Options" xml:space="preserve">
+    <value>Options</value>
+  </data>
+  <data name="Sort" xml:space="preserve">
+    <value>Sort</value>
+  </data>
+  <data name="SortDirectionAscending" xml:space="preserve">
+    <value>ascending</value>
+  </data>
+  <data name="SortDirectionDescending" xml:space="preserve">
+    <value>descending</value>
+  </data>
+  <data name="SortDirection" xml:space="preserve">
+    <value>Sort direction:</value>
+  </data>
+  <data name="OkButton" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="CancelButton" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="OpenFile" xml:space="preserve">
+    <value>Open file</value>
+  </data>
 </root>

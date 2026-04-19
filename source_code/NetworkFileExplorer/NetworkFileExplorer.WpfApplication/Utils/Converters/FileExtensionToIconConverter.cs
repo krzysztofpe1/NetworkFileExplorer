@@ -2,7 +2,7 @@
 using System.IO;
 using System.Windows.Data;
 
-namespace NetworkFileExplorer.WpfApplication.Utils;
+namespace NetworkFileExplorer.WpfApplication.Utils.Converters;
 
 public class FileExtensionToIconConverter : IValueConverter
 {

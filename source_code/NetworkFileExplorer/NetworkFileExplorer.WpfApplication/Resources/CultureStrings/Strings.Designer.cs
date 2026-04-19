@@ -61,6 +61,15 @@ namespace NetworkFileExplorer.WpfApplication.Resources.CultureStrings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string CancelButton {
+            get {
+                return ResourceManager.GetString("CancelButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Close.
         /// </summary>
         public static string Close {
@@ -79,11 +88,137 @@ namespace NetworkFileExplorer.WpfApplication.Resources.CultureStrings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ok.
+        /// </summary>
+        public static string OkButton {
+            get {
+                return ResourceManager.GetString("OkButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Open directory.
         /// </summary>
         public static string OpenDirectory {
             get {
                 return ResourceManager.GetString("OpenDirectory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open file.
+        /// </summary>
+        public static string OpenFile {
+            get {
+                return ResourceManager.GetString("OpenFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Options.
+        /// </summary>
+        public static string Options {
+            get {
+                return ResourceManager.GetString("Options", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select directory to open.
+        /// </summary>
+        public static string SelectDirectoryToOpen {
+            get {
+                return ResourceManager.GetString("SelectDirectoryToOpen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sort.
+        /// </summary>
+        public static string Sort {
+            get {
+                return ResourceManager.GetString("Sort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sort by:.
+        /// </summary>
+        public static string SortBy {
+            get {
+                return ResourceManager.GetString("SortBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to extension.
+        /// </summary>
+        public static string SortByExtension {
+            get {
+                return ResourceManager.GetString("SortByExtension", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to last modified date.
+        /// </summary>
+        public static string SortByLastModifiedDate {
+            get {
+                return ResourceManager.GetString("SortByLastModifiedDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to name.
+        /// </summary>
+        public static string SortByName {
+            get {
+                return ResourceManager.GetString("SortByName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to size.
+        /// </summary>
+        public static string SortBySize {
+            get {
+                return ResourceManager.GetString("SortBySize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sort options.
+        /// </summary>
+        public static string SortDialogTitle {
+            get {
+                return ResourceManager.GetString("SortDialogTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sort direction:.
+        /// </summary>
+        public static string SortDirection {
+            get {
+                return ResourceManager.GetString("SortDirection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ascending.
+        /// </summary>
+        public static string SortDirectionAscending {
+            get {
+                return ResourceManager.GetString("SortDirectionAscending", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to descending.
+        /// </summary>
+        public static string SortDirectionDescending {
+            get {
+                return ResourceManager.GetString("SortDirectionDescending", resourceCulture);
             }
         }
     }

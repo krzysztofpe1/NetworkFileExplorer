@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:NetworkFileExplorer.WpfApplication"
         xmlns:viewModels="clr-namespace:NetworkFileExplorer.WpfApplication.ViewModels"
         xmlns:utils="clr-namespace:NetworkFileExplorer.WpfApplication.Utils"
+        xmlns:converters="clr-namespace:NetworkFileExplorer.WpfApplication.Utils.Converters"
         xmlns:cultureStrings="clr-namespace:NetworkFileExplorer.WpfApplication.Resources.CultureStrings"
         mc:Ignorable="d"
         Title="Network File Explorer" Height="450" Width="800">
@@ -21,14 +22,24 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
-        
+
         <!--Converters-->
-        <utils:LangToBoolConverter x:Key="LangToBoolConverter"/>
-        <utils:FileExtensionToIconConverter x:Key="FileExtensionToIconConverter"/>
-        
+        <converters:LangToBoolConverter x:Key="LangToBoolConverter"/>
+        <converters:FileExtensionToIconConverter x:Key="FileExtensionToIconConverter"/>
+
         <!--Data Templates-->
         <DataTemplate DataType="{x:Type viewModels:FileInfoViewModel}">
             <StackPanel Orientation="Horizontal">
+                <StackPanel.InputBindings>
+                    <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding OpenFileCommand}" CommandParameter="{Binding}"/>
+                </StackPanel.InputBindings>
+                <StackPanel.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem x:Name="OpenFileMenuItem"
+                             Header="{Binding Source={StaticResource Strings}, Path=OpenFile}"
+                             Command="{Binding OpenFileCommand}" CommandParameter="{Binding}"/>
+                    </ContextMenu>
+                </StackPanel.ContextMenu>
                 <Image Width="14" Source="{Binding Model.Name, Converter={StaticResource FileExtensionToIconConverter}}"/>
                 <TextBlock Text="{Binding Caption}" />
             </StackPanel>
@@ -52,8 +63,11 @@
         <ToolBar Grid.ColumnSpan="2" Grid.Row="0">
             <Menu>
                 <MenuItem Header="{Binding Source={StaticResource Strings}, Path=File}">
-                    <MenuItem x:Name="OpenDirectoryButton" Header="{Binding Source={StaticResource Strings}, Path=OpenDirectory}" Click="OpenDirectoryMI_Click"/>
+                    <MenuItem x:Name="OpenDirectoryButton" Header="{Binding Source={StaticResource Strings}, Path=OpenDirectory}" Command="{Binding OpenRootFolderCommand}"/>
                     <MenuItem x:Name="CloseButton" Header="{Binding Source={StaticResource Strings}, Path=Close}" Click="Close_Click"/>
+                </MenuItem>
+                <MenuItem Header="{Binding Source={StaticResource Strings}, Path=Options}">
+                    <MenuItem x:Name="SortButton" Header="{Binding Source={StaticResource Strings}, Path=Sort}" Command="{Binding SortRootFolderCommand}"/>
                 </MenuItem>
             </Menu>
 
@@ -69,16 +83,19 @@
                 <RowDefinition/>
                 <RowDefinition Height="40"/>
             </Grid.RowDefinitions>
-            <TreeView Grid.Row="0" x:Name="DiskTreeView" ItemsSource="{Binding Root.Items}" d:ItemsSource="{d:SampleData ItemCount=5}"/>
+            <TreeView Grid.Row="0" x:Name="DiskTreeView" ItemsSource="{Binding Root.Items}" d:ItemsSource="{d:SampleData ItemCount=5}">
+                <TreeView.ItemContainerStyle>
+                    <Style TargetType="TreeViewItem">
+                        <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}" />
+                        <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay}" />
+                    </Style>
+                </TreeView.ItemContainerStyle>
+            </TreeView>
             <StatusBar Grid.Row="1" x:Name="statusBar">
                 <TextBlock x:Name="statusTextBlock" TextWrapping="Wrap" Width="79" Text="----"/>
             </StatusBar>
         </Grid>
 
-
-        <ScrollViewer x:Name="scrollViewer" HorizontalAlignment="Left" Height="367" Margin="422,48,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="360">
-            <TextBlock TextWrapping="Wrap"/>
-        </ScrollViewer>
-
+        <ContentControl Grid.Column="1" Grid.Row="1" x:Name="contentControl" Margin="5"/>
     </Grid>
 </Window>

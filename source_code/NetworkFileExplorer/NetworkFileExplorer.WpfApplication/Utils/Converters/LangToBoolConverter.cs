@@ -1,7 +1,7 @@
 ﻿using System.Globalization;
 using System.Windows.Data;
 
-namespace NetworkFileExplorer.WpfApplication.Utils;
+namespace NetworkFileExplorer.WpfApplication.Utils.Converters;
 
 internal class LangToBoolConverter: IValueConverter
 {
@@ -15,6 +15,6 @@ internal class LangToBoolConverter: IValueConverter
     {
         if ((bool)value == true)
             return (string)parameter;
-        throw new ArgumentException(nameof(value));
+        return Binding.DoNothing;
     }
 }

@@ -12,6 +12,7 @@ public class CultureResourcesHelper
     {
         return new Strings();
     }
+
     private static ObjectDataProvider _provider;
     public static ObjectDataProvider ResourceProvider
     {

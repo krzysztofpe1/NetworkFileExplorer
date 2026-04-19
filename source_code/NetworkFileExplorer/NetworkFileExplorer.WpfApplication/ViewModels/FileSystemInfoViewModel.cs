@@ -3,8 +3,22 @@ using System.IO;
 
 namespace NetworkFileExplorer.WpfApplication.ViewModels;
 
-class FileSystemInfoViewModel : ViewModelBase
+public class FileSystemInfoViewModel : ViewModelBase
 {
+    public required ViewModelBase Owner { get; init; }
+    public FileExplorerViewModel? OwnerExplorer
+    {
+        get
+        {
+            ViewModelBase owner = Owner;
+
+            while(owner is DirectoryInfoViewModel directoryInforVM)
+                owner = directoryInforVM.Owner;
+
+            return owner is FileExplorerViewModel fileExplorerVM ? fileExplorerVM : null;
+        }
+    }
+
     public DateTime? LastWriteTime
     {
         get;
@@ -28,6 +42,18 @@ class FileSystemInfoViewModel : ViewModelBase
             RaisePropertyChanged();
         }
     }
+
+    public bool IsSelected
+    {
+        get;
+        set
+        {
+            if (value == field)
+                return;
+            field = value;
+            RaisePropertyChanged();
+        }
+    } = false;
 
     public FileSystemInfo? Model
     {

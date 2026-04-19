@@ -1,0 +1,46 @@
+﻿<Window x:Class="NetworkFileExplorer.WpfApplication.SortDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NetworkFileExplorer.WpfApplication"
+        xmlns:converters="clr-namespace:NetworkFileExplorer.WpfApplication.Utils.Converters"
+        mc:Ignorable="d"
+        Title="Sort Options" Height="300" Width="300" ResizeMode="NoResize">
+    <Window.Resources>
+        <!--Styles-->
+        <Style x:Key="{x:Type StackPanel}" TargetType="{x:Type StackPanel}">
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+        <Style x:Key="{x:Type RadioButton}" TargetType="{x:Type RadioButton}">
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+        <!--Converters-->
+        <converters:SortDirectionToBoolConverter x:Key="SortDirectionToBoolConverter"/>
+        <converters:SortByToBoolConverter x:Key="SortByToBoolConverter"/>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition />
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Vertical">
+            <TextBlock Text="{Binding Source={StaticResource Strings}, Path=SortBy}"/>
+            <RadioButton Content="{Binding Source={StaticResource Strings}, Path=SortByName}" IsChecked="{Binding Path=OrderBy, Converter={StaticResource SortByToBoolConverter}, ConverterParameter=Name}"/>
+            <RadioButton Content="{Binding Source={StaticResource Strings}, Path=SortByExtension}" IsChecked="{Binding Path=OrderBy, Converter={StaticResource SortByToBoolConverter}, ConverterParameter=Extension}"/>
+            <RadioButton Content="{Binding Source={StaticResource Strings}, Path=SortBySize}" IsChecked="{Binding Path=OrderBy, Converter={StaticResource SortByToBoolConverter}, ConverterParameter=Size}"/>
+            <RadioButton Content="{Binding Source={StaticResource Strings}, Path=SortByLastModifiedDate}" IsChecked="{Binding Path=OrderBy, Converter={StaticResource SortByToBoolConverter}, ConverterParameter=LastModifiedDate}"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Orientation="Vertical">
+            <TextBlock Text="{Binding Source={StaticResource Strings}, Path=SortDirection}"/>
+            <RadioButton Content="{Binding Source={StaticResource Strings}, Path=SortDirectionAscending}" IsChecked="{Binding Path=Direction, Converter={StaticResource SortDirectionToBoolConverter}, ConverterParameter=Ascending}"/>
+            <RadioButton Content="{Binding Source={StaticResource Strings}, Path=SortDirectionDescending}" IsChecked="{Binding Path=Direction, Converter={StaticResource SortDirectionToBoolConverter}, ConverterParameter=Descending}"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="{Binding Source={StaticResource Strings}, Path=OkButton}" Width="75" Margin="5" Click="OkButton_Click"/>
+            <Button Content="{Binding Source={StaticResource Strings}, Path=CancelButton}" Width="75" Margin="5" Click="CancelButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

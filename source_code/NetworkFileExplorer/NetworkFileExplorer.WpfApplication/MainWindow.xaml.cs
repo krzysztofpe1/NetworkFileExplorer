@@ -1,7 +1,7 @@
-﻿using Microsoft.Win32;
-using NetworkFileExplorer.WpfApplication.Utils;
+﻿using NetworkFileExplorer.WpfApplication.Utils;
 using NetworkFileExplorer.WpfApplication.ViewModels;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace NetworkFileExplorer.WpfApplication;
 
@@ -16,6 +16,14 @@ public partial class MainWindow : Window
         _fileExplorerViewModel = new();
         DataContext = _fileExplorerViewModel;
         _fileExplorerViewModel.PropertyChanged += _fileExplorerViewModel_PropertyChanged;
+        _fileExplorerViewModel.OnOpenFileRequest += _fileExplorerViewModel_OnOpenFileRequest;
+    }
+
+    private void _fileExplorerViewModel_OnOpenFileRequest(object? sender, FileInfoViewModel e)
+    {
+        string content = e.GetFileContent();
+        var textBlock = new TextBlock() { Text = content };
+        contentControl.Content = textBlock;
     }
 
     private void _fileExplorerViewModel_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -24,16 +32,6 @@ public partial class MainWindow : Window
         {
             CultureResourcesHelper.ChangeCulture(new System.Globalization.CultureInfo(_fileExplorerViewModel.Lang));
         }
-    }
-
-    private void OpenDirectoryMI_Click(object sender, RoutedEventArgs e)
-    {
-        var ofd = new OpenFolderDialog() { Title = "Select directory to open", Multiselect = false };
-        if (ofd.ShowDialog() != true)
-            return;
-
-        var path = ofd.FolderName;
-        _fileExplorerViewModel.OpenRoot(path);
     }
 
     private void Close_Click(object sender, RoutedEventArgs e)
