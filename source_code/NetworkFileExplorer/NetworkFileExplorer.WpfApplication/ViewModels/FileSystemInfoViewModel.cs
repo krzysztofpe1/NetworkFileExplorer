@@ -19,6 +19,18 @@ public class FileSystemInfoViewModel : ViewModelBase
         }
     }
 
+    public string StatusMessage
+    {
+        get;
+        set
+        {
+            if (field == value)
+                return;
+            field = value;
+            RaisePropertyChanged(nameof(StatusMessage));
+        }
+    } = string.Empty;
+
     public DateTime? LastWriteTime
     {
         get;

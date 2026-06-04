@@ -26,6 +26,7 @@
         <!--Converters-->
         <converters:LangToBoolConverter x:Key="LangToBoolConverter"/>
         <converters:FileExtensionToIconConverter x:Key="FileExtensionToIconConverter"/>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
 
         <!--Data Templates-->
         <DataTemplate DataType="{x:Type viewModels:FileInfoViewModel}">
@@ -77,6 +78,7 @@
             <ToggleButton x:Name="englishLangButton" Style="{StaticResource LangButtonStyle}" IsChecked="{Binding Lang, Converter={StaticResource LangToBoolConverter}, ConverterParameter=en}">
                 <Image Source="/Resources/Images/flag_english.png" Width="16"/>
             </ToggleButton>
+            <TextBlock Text="{Binding Path=StatusMessage}"/>
         </ToolBar>
         <Grid Grid.Column="0" Grid.Row="1">
             <Grid.RowDefinitions>
@@ -92,7 +94,11 @@
                 </TreeView.ItemContainerStyle>
             </TreeView>
             <StatusBar Grid.Row="1" x:Name="statusBar">
-                <TextBlock x:Name="statusTextBlock" TextWrapping="Wrap" Width="79" Text="----"/>
+                <TextBlock x:Name="statusTextBlock" TextWrapping="Wrap" Text="{Binding Path=StatusMessage}"/>
+                <Button x:Name="cancelSortButton"
+                        Content="{Binding Source={StaticResource Strings}, Path=CancelButton}"
+                        Command="{Binding CancelSortCommand}"
+                        Visibility="{Binding IsSorting, Converter={StaticResource BooleanToVisibilityConverter}}"/>
             </StatusBar>
         </Grid>
 

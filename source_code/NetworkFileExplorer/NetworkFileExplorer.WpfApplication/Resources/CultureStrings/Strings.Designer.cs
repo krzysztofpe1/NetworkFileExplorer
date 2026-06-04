@@ -88,6 +88,15 @@ namespace NetworkFileExplorer.WpfApplication.Resources.CultureStrings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Loading.
+        /// </summary>
+        public static string Loading {
+            get {
+                return ResourceManager.GetString("Loading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ok.
         /// </summary>
         public static string OkButton {
@@ -123,6 +132,33 @@ namespace NetworkFileExplorer.WpfApplication.Resources.CultureStrings {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized string similar to Ready.
+        /// </summary>
+        public static string Ready {
+            get {
+                return ResourceManager.GetString("Ready", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sorting.
+        /// </summary>
+        public static string Sorting {
+            get {
+                return ResourceManager.GetString("Sorting", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Sorting cancelled.
+        /// </summary>
+        public static string SortingCancelled {
+            get {
+                return ResourceManager.GetString("SortingCancelled", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Select directory to open.
         /// </summary>
